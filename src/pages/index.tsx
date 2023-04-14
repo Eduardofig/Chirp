@@ -1,10 +1,14 @@
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
+import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
 
     const user = useUser()
+
+    const { data } = api.posts.getAll.useQuery()
+    console.log(`Olhe aqui: ${data}`)
 
     return (
         <>
@@ -17,6 +21,11 @@ const Home: NextPage = () => {
                 <div>
                     { user.isSignedIn? <p>Hello, User</p>: <p>Sign in to continue</p> }
                     { user.isSignedIn? <SignOutButton/>: <SignInButton/> }
+                </div>
+                <div>
+                    {data?.map((post) => {
+                        return <div key={ post.id } className="flex justify-center items-center">{ post.content }</div>
+                    })}
                 </div>
             </main>
         </>
