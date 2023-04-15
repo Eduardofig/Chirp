@@ -35,8 +35,8 @@ const CreatePostWizard = () => {
                 alt="Profile Image"
                 className="w-16 h-16 rounded-full"
             />
-            <input onChange={ (e) => setContent(e.target.value) } placeholder="type some emojis" className="bg-transparent"/>
-            <button onClick={ () => handleClick(user.username) }>Send Post</button>
+            <input onChange={ (e) => setContent(e.target.value) } placeholder="Tweet Something" className="bg-transparent"/>
+            <button onClick={ () => handleClick(user.username) } className="bg-red-400">Send Post</button>
         </div>
     )
 }
