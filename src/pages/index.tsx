@@ -1,4 +1,4 @@
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import { SignInButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
@@ -34,8 +34,8 @@ const CreatePostWizard = () => {
                 alt="Profile Image"
                 className="w-16 h-16 rounded-full"
             />
-            <input onChange={(e) => setContent(e.target.value)} placeholder="type some emojis" className="bg-transparent"/>
-            <button onClick={ () => handleClick(user.username) }>Send Post</button>
+            <input onChange={ (e) => setContent(e.target.value) } placeholder="type some emojis" className="bg-transparent"/>
+            <button onClick={ async () => await handleClick(user.username) }>Send Post</button>
         </div>
     )
 }
