@@ -13,7 +13,7 @@ const CreatePostWizard = () => {
         return <div>Something went wrong</div>
     }
 
-    const handleClick = async (userName: string | null) => {
+    const handleClick = (userName: string | null) => {
 
         if(!userName) {
             return
@@ -24,8 +24,9 @@ const CreatePostWizard = () => {
             authorId: userName,
         }
 
-        await postMutation.mutateAsync(tweet)
-        window.location.reload()
+        postMutation.mutateAsync(tweet)
+            .then(() => window.location.reload())
+            .catch(() => alert("Something went wrong"))
     }
 
     return (
@@ -35,7 +36,7 @@ const CreatePostWizard = () => {
                 className="w-16 h-16 rounded-full"
             />
             <input onChange={ (e) => setContent(e.target.value) } placeholder="type some emojis" className="bg-transparent"/>
-            <button onClick={ async () => await handleClick(user.username) }>Send Post</button>
+            <button onClick={ () => handleClick(user.username) }>Send Post</button>
         </div>
     )
 }
