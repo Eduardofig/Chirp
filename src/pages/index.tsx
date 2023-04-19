@@ -38,11 +38,11 @@ const CreatePostWizard = () => {
             <input 
                 onChange={ (e) => setContent(e.target.value) }
                 placeholder="Tweet Something"
-                className="grow outline-none bg-gray-900 hover:bg-gray-800 focus:bg-gray-800 rounded-lg"
+                className="p-5 grow outline-none bg-gray-900 hover:bg-gray-800 focus:bg-gray-800 rounded-lg"
             />
             <button 
                 onClick={ () => handleClick(user.username) }
-                className="bg-red-950 rounded-lg hover:bg-red-900"
+                className="p-1 bg-red-950 rounded-lg hover:bg-red-900"
             >
                 Send Post
             </button>
