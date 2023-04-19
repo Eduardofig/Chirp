@@ -1,18 +1,16 @@
 import { SignInButton, useUser } from "@clerk/nextjs"
-import { Post } from "@prisma/client"
+import type { Post } from "@prisma/client"
 import Head from "next/head"
 import { useState } from "react"
 import { CreatePostWizard } from "~/components/CreatePostWizard"
 import { DataStateContext } from "~/components/DataStateContext"
 import { Posts } from "~/components/Posts"
 
-export function Timeline({data}: {data: Post[] | undefined}) {
+export function Timeline({data}: {data: Post[]}) {
 
     // Hooks
     const user = useUser()
     const [dataState, setDataState] = useState(data)
-
-    console.log(`dataState = ${dataState}, data = ${data}`)
 
     return (
         <>

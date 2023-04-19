@@ -1,7 +1,7 @@
-import { Post } from "@prisma/client";
-import { Dispatch, SetStateAction } from "react";
+import type { Post } from "@prisma/client";
+import type { Dispatch, SetStateAction } from "react";
 
 export type DataStateContextType = {
-    dataState: Post[] | undefined;
-    setDataState: Dispatch<SetStateAction<Post[] | undefined>> | undefined;
+    dataState: Post[];
+    setDataState: Dispatch<SetStateAction<Post[]>>;
 }

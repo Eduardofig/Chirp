@@ -2,7 +2,7 @@ import { useUser } from "@clerk/nextjs"
 import { useContext, useState } from "react"
 import { api } from "~/utils/api"
 import { DataStateContext } from "./DataStateContext"
-import { Post } from "@prisma/client"
+import type { Post } from "@prisma/client"
 
 export function CreatePostWizard() {
     const { user } = useUser()
