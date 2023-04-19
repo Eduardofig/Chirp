@@ -1,11 +1,14 @@
 import { useUser } from "@clerk/nextjs"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { api } from "~/utils/api"
+import { DataStateContext } from "./DataStateContext"
+import { Post } from "@prisma/client"
 
 export function CreatePostWizard() {
     const { user } = useUser()
     const [content, setContent] = useState("")
     const postMutation = api.posts.sendTweet.useMutation()
+    const { dataState, setDataState } = useContext(DataStateContext)
 
     if(!user || !user.username) {
         return <div>Something went wrong</div>
@@ -17,13 +20,20 @@ export function CreatePostWizard() {
             return
         }
 
-        const tweet = {
+        const newPost = {
             content,
             authorId: userName,
         }
 
-        postMutation.mutateAsync(tweet)
-            .then(() => window.location.reload())
+        postMutation.mutateAsync(newPost)
+            .then(() => {
+                if(dataState && setDataState) {
+                    setDataState([
+                        ...dataState,
+                        {content, authorId: userName, id: "", createdAt: new Date()} as Post,
+                    ])
+                }
+            })
             .catch(() => alert("Something went wrong"))
     }
 
@@ -35,7 +45,7 @@ export function CreatePostWizard() {
             />
             <input 
                 onChange={ (e) => setContent(e.target.value) }
-                placeholder="Tweet Something"
+                placeholder="Say Something!"
                 className="p-5 grow outline-none bg-gray-900 hover:bg-gray-800 focus:bg-gray-800 rounded-lg"
             />
             <button 
