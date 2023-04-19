@@ -1,4 +1,3 @@
-import { SignInButton, useUser } from "@clerk/nextjs"
 import type { Post } from "@prisma/client"
 import Head from "next/head"
 import { useState } from "react"
@@ -9,7 +8,6 @@ import { Posts } from "~/components/Posts"
 export function Timeline({data}: {data: Post[]}) {
 
     // Hooks
-    const user = useUser()
     const [dataState, setDataState] = useState(data)
 
     return (
@@ -23,7 +21,7 @@ export function Timeline({data}: {data: Post[]}) {
                 <DataStateContext.Provider value={{dataState, setDataState}}>
                     <div className="h-full w-full md:max-w-2xl border-x border-slate-40">
                         <div className="p-4 border-b border-slate-400">
-                            { user.isSignedIn? <CreatePostWizard/>: <SignInButton/> } 
+                            <CreatePostWizard/>
                         </div>
                         <Posts/>
                     </div>

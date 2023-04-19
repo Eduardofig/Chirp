@@ -7,14 +7,15 @@ import type { Post } from "@prisma/client"
 export function CreatePostWizard() {
     const { user } = useUser()
     const [content, setContent] = useState("")
+    const [btnText, setBtnText] = useState("Send Post")
     const postMutation = api.posts.sendTweet.useMutation()
     const { dataState, setDataState } = useContext(DataStateContext)
 
-    if(!user || !user.username) {
+    if(!user) {
         return <div>Something went wrong</div>
     }
 
-    const handleClick = (userName: string | null) => {
+    const handlePost = (userName: string | null) => {
 
         if(!userName) {
             return
@@ -25,6 +26,8 @@ export function CreatePostWizard() {
             authorId: userName,
         }
 
+        setBtnText("Sending")
+
         postMutation.mutateAsync(newPost)
             .then(() => {
                 if(dataState && setDataState) {
@@ -33,6 +36,8 @@ export function CreatePostWizard() {
                         {content, authorId: userName, id: "", createdAt: new Date()} as Post,
                     ])
                 }
+
+                setBtnText("Send Post")
             })
             .catch(() => alert("Something went wrong"))
     }
@@ -43,17 +48,23 @@ export function CreatePostWizard() {
                 alt="Profile Image"
                 className="w-14 h-14 rounded-full"
             />
-            <input 
-                onChange={ (e) => setContent(e.target.value) }
-                placeholder="Say Something!"
-                className="p-5 grow outline-none bg-gray-900 hover:bg-gray-800 focus:bg-gray-800 rounded-lg"
-            />
-            <button 
-                onClick={ () => handleClick(user.username) }
-                className="p-1 bg-red-950 rounded-lg hover:bg-red-900"
+            <form 
+                className="flex w-full gap-3"
+                onSubmit={ () => handlePost(user.username || user.fullName) }
             >
-                Send Post
-            </button>
+                <input 
+                    onChange={ (e) => setContent(e.target.value) }
+                    onSubmit={ () => handlePost(user.username || user.fullName) }
+                    placeholder="Say Something!"
+                    className="p-5 grow outline-none bg-gray-900 hover:bg-gray-800 focus:bg-gray-800 rounded-lg"
+                />
+                <button 
+                    type="submit"
+                    className="p-1 bg-red-950 rounded-lg hover:bg-red-900"
+                >
+                    { btnText }
+                </button>
+            </form>
         </div>
     )
 }
