@@ -10,7 +10,7 @@ function filterUserForClient(user: User) {
 
     if(username == null) {
         if(user.emailAddresses[0]) {
-            username = `$<{user.emailAddresses[0].emailAddress}>`;
+            username = `$<${user.emailAddresses[0].emailAddress}>`;
         } else {
             username = "[Username not found]"
         }
