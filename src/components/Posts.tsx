@@ -19,13 +19,16 @@ export function Posts() {
                             alt="Profile Image"
                             className="w-7 h-7 rounded-full"
                         />
-                        <div className="flex flex-col">
+                        <div className="flex flex-col w-full">
                             <div className="flex gap-2">
                                 <span>{ post.content }</span>
                             </div>
-                            <div className="flex gap-2">
-                                <span>
-                                    {`@${author.username} - ${post.createdAt.toLocaleDateString()}`}
+                            <div className="flex gap-2 w-full text-xs">
+                                <span className="flex">
+                                    {`@${author.username}`}
+                                </span>
+                                <span className="flex gap-2 ml-auto">
+                                    {`${post.createdAt.toLocaleDateString()} - ${post.createdAt.toLocaleTimeString()}`}
                                 </span>
                             </div>
                         </div>
