@@ -5,9 +5,20 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 function filterUserForClient(user: User) {
+
+    let username = user.username;
+
+    if(username == null) {
+        if(user.emailAddresses[0]) {
+            username = `$<{user.emailAddresses[0].emailAddress}>`;
+        } else {
+            username = "[Username not found]"
+        }
+    }
+
     return {
         id: user.id,
-        username: user.username || "[No username]",
+        username,
         profileImageUrl: user.profileImageUrl,
     }
 }
