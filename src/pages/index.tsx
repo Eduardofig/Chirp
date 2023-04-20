@@ -18,7 +18,7 @@ function Home() {
     }
 
     return (
-        <>
+        <div className="h-full w-full">
             {
                 user.isSignedIn?
                     <>
@@ -28,7 +28,7 @@ function Home() {
                     :
                     <SignInButton/>
             }
-        </>
+        </div>
 
     )
 }

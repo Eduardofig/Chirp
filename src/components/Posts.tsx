@@ -14,7 +14,7 @@ export function Posts() {
             dataState
             .map(({post, author}) => {
                 return (
-                    <div key={ post.id } className="flex gap-3 p-4 border-b border-slate-400">
+                    <div key={ post.id } className="flex gap-3 p-4 border-b border-slate-400 w-full">
                         <img src={ author.profileImageUrl }
                             alt="Profile Image"
                             className="w-7 h-7 rounded-full"
