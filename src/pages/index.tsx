@@ -2,6 +2,7 @@ import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs"
 import { Timeline } from "~/components/Timeline"
 import { api } from "~/utils/api"
 
+
 function Home() {
 
     // Hooks

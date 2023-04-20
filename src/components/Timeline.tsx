@@ -1,11 +1,11 @@
-import type { Post } from "@prisma/client"
 import Head from "next/head"
 import { useState } from "react"
 import { CreatePostWizard } from "~/components/CreatePostWizard"
 import { DataStateContext } from "~/components/DataStateContext"
 import { Posts } from "~/components/Posts"
+import type { UserData } from "~/utils/UserData"
 
-export function Timeline({data}: {data: Post[]}) {
+export function Timeline({data}: {data: UserData[]}) {
 
     // Hooks
     const [dataState, setDataState] = useState(data)

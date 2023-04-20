@@ -1,19 +1,18 @@
 import { useUser } from "@clerk/nextjs"
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { api } from "~/utils/api"
-import { DataStateContext } from "./DataStateContext"
-import type { Post } from "@prisma/client"
 
 export function CreatePostWizard() {
     const { user } = useUser()
     const [content, setContent] = useState("")
     const [btnText, setBtnText] = useState("Send Post")
     const postMutation = api.posts.sendTweet.useMutation()
-    const { dataState, setDataState } = useContext(DataStateContext)
 
     if(!user) {
         return <div>Something went wrong</div>
     }
+
+    console.log(user)
 
     const handlePost = (userName: string | null) => {
 
@@ -30,12 +29,6 @@ export function CreatePostWizard() {
 
         postMutation.mutateAsync(newPost)
             .then(() => {
-                if(dataState && setDataState) {
-                    setDataState([
-                        ...dataState,
-                        {content, authorId: userName, id: "", createdAt: new Date()} as Post,
-                    ])
-                }
 
                 setBtnText("Send Post")
             })
@@ -50,11 +43,11 @@ export function CreatePostWizard() {
             />
             <form 
                 className="flex w-full gap-3"
-                onSubmit={ () => handlePost(user.username || user.fullName) }
+                onSubmit={ () => handlePost(user.id) }
             >
                 <input 
                     onChange={ (e) => setContent(e.target.value) }
-                    onSubmit={ () => handlePost(user.username || user.fullName) }
+                    onSubmit={ () => handlePost(user.id) }
                     placeholder="Say Something!"
                     className="p-5 grow outline-none bg-gray-900 hover:bg-gray-800 focus:bg-gray-800 rounded-lg"
                 />

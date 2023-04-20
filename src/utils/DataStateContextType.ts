@@ -1,7 +1,7 @@
-import type { Post } from "@prisma/client";
 import type { Dispatch, SetStateAction } from "react";
+import type { UserData } from "./UserData";
 
 export type DataStateContextType = {
-    dataState: Post[];
-    setDataState: Dispatch<SetStateAction<Post[]>>;
+    dataState: UserData[];
+    setDataState: Dispatch<SetStateAction<UserData[]>>;
 }
