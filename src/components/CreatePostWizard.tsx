@@ -39,7 +39,7 @@ export function CreatePostWizard() {
         <div className="flex w-full gap-3">
             <img src={ user.profileImageUrl }
                 alt="Profile Image"
-                className="w-14 h-14 rounded-full"
+                className="w-14 self-center h-14 rounded-full"
             />
             <form 
                 className="flex w-full gap-3"

@@ -17,7 +17,7 @@ export function Posts() {
                     <div key={ post.id } className="flex gap-3 p-4 border-b border-slate-400 w-full">
                         <img src={ author.profileImageUrl }
                             alt="Profile Image"
-                            className="w-7 h-7 rounded-full"
+                            className="w-7 h-7 rounded-full self-center"
                         />
                         <div className="flex flex-col w-full">
                             <div className="flex gap-2">
