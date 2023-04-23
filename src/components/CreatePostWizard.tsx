@@ -42,14 +42,14 @@ export function CreatePostWizard() {
                 className="w-14 self-center h-14 rounded-full"
             />
             <form 
-                className="flex w-full gap-3"
+                className="flex w-screen gap-3"
                 onSubmit={ () => handlePost(user.id) }
             >
                 <input 
                     onChange={ (e) => setContent(e.target.value) }
                     onSubmit={ () => handlePost(user.id) }
                     placeholder="Say Something!"
-                    className="p-5 grow outline-none bg-gray-900 hover:bg-gray-800 focus:bg-gray-800 rounded-lg"
+                    className="p-5 w-16 grow outline-none bg-gray-900 hover:bg-gray-800 focus:bg-gray-800 rounded-lg"
                 />
                 <button 
                     type="submit"
