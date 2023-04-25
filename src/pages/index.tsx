@@ -4,18 +4,17 @@ import { api } from "~/utils/api"
 
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { LoadingSpinner } from "~/components/Loading"
 
 dayjs.extend(relativeTime)
 
-
 function Home() {
-
     // Hooks
     const user  = useUser()
     const { data, isLoading } = api.posts.getAll.useQuery()
 
     if(isLoading) {
-        return <div>Loading!</div>
+        return <LoadingSpinner/>
     }
 
     if(!data) {
@@ -25,7 +24,7 @@ function Home() {
     console.log("Hello Laurinha")
 
     return (
-        <div className="h-full w-full">
+        <div className="h-full w-full bg-slate-950">
             {
                 user.isSignedIn?
                     <>

@@ -37,7 +37,7 @@ export function CreatePostWizard() {
     }
 
     return (
-        <div className="flex w-full mx-auto border-2 py-2 px-2 rounded-lg gap-3 bg-sky-700">
+        <div className="flex w-full mx-auto border-2 py-2 px-2 rounded-lg gap-3 bg-slate-800 border-transparent">
             <Image
                 src= { user.profileImageUrl }
                 className="w-14 self-center h-14 rounded-full"
@@ -53,11 +53,11 @@ export function CreatePostWizard() {
                     onChange={ (e) => setContent(e.target.value) }
                     onSubmit={ () => handlePost(user.id) }
                     placeholder="Say Something!"
-                    className="p-5 w-16 grow outline-none bg-gray-900 hover:bg-gray-800 focus:bg-gray-800 rounded-lg"
+                    className="p-5 text-sky-200 w-16 grow outline-none bg-slate-800 hover:bg-gray-800 focus:bg-gray-800 rounded-lg"
                 />
                 <button 
                     type="submit"
-                    className="p-1 bg-red-950 rounded-lg hover:bg-red-900"
+                    className="p-1 bg-red-950 rounded-lg hover:bg-red-900 text-sky-200"
                 >
                     { btnText }
                 </button>

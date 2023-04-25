@@ -2,13 +2,14 @@ import { useContext } from "react"
 import { DataStateContext } from "./DataStateContext"
 import dayjs from "dayjs"
 import Image from "next/image"
+import { LoadingSpinner } from "./Loading"
 
 export function Posts() {
 
     const { dataState } = useContext(DataStateContext)
 
     if(!dataState) {
-        return <div>Loading!</div>
+        return <LoadingSpinner/>
     }
 
     return <div>
@@ -16,7 +17,10 @@ export function Posts() {
             dataState
             .map(({post, author}) => {
                 return (
-                    <div key={ post.id } className="flex gap-3 p-2 m-1 rounded-md border-2 shadow-md bg-gray-500 border-slate-400 mx-auto w-[96%]">
+                    <div 
+                        key={ post.id } 
+                        className="flex text-sky-200 gap-3 p-2 m-1 rounded-md border-2 shadow-md bg-slate-800 border-transparent mx-auto w-[96%]"
+                    >
                         <Image
                             src= {author.profileImageUrl}
                             className="w-7 h-7 rounded-full self-center"

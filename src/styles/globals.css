@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 body {
-    @apply bg-sky-950 text-slate-100;
+    @apply h-full w-full;
 
 }
