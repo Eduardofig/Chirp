@@ -1,4 +1,5 @@
 import { useUser } from "@clerk/nextjs"
+import Image from "next/image"
 import { useState } from "react"
 import { api } from "~/utils/api"
 
@@ -37,9 +38,12 @@ export function CreatePostWizard() {
 
     return (
         <div className="flex w-full mx-auto border-2 py-2 px-2 rounded-lg gap-3 bg-sky-700">
-            <img src={ user.profileImageUrl }
-                alt="Profile Image"
+            <Image
+                src= { user.profileImageUrl }
                 className="w-14 self-center h-14 rounded-full"
+                alt={`@${ user.username || "Unidentified" } profile picture`}
+                width={56}
+                height={56}
             />
             <form 
                 className="flex w-screen gap-3"

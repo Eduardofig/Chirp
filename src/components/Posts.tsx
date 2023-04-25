@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { DataStateContext } from "./DataStateContext"
 import dayjs from "dayjs"
+import Image from "next/image"
 
 export function Posts() {
 
@@ -16,9 +17,12 @@ export function Posts() {
             .map(({post, author}) => {
                 return (
                     <div key={ post.id } className="flex gap-3 p-2 m-1 rounded-md border-2 shadow-md bg-gray-500 border-slate-400 mx-auto w-[96%]">
-                        <img src={ author.profileImageUrl }
-                            alt="Profile Image"
+                        <Image
+                            src= {author.profileImageUrl}
                             className="w-7 h-7 rounded-full self-center"
+                            alt={`@${author.username} profile picture`}
+                            width={56}
+                            height={56}
                         />
                         <div className="flex flex-col w-full">
                             <div className="flex gap-2">
