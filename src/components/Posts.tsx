@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { DataStateContext } from "./DataStateContext"
+import dayjs from "dayjs"
 
 export function Posts() {
 
@@ -28,7 +29,7 @@ export function Posts() {
                                     {`@${author.username}`}
                                 </span>
                                 <span className="flex gap-2 ml-auto">
-                                    {`${post.createdAt.toLocaleDateString()} - ${post.createdAt.toLocaleTimeString()}`}
+                                    {dayjs(post.createdAt).fromNow()}
                                 </span>
                             </div>
                         </div>
