@@ -10,7 +10,11 @@ export function CreatePostWizard() {
     const postMutation = api.posts.sendTweet.useMutation()
 
     if(!user) {
-        return <div>Something went wrong</div>
+        return <p 
+            className="absolute h-full w-full bg-slate-950 grid place-items-center align-middle text-sky-100 font-bold"
+        >
+            Something went wrong
+        </p>
     }
 
     console.log(user)
